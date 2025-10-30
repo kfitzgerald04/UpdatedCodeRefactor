@@ -1,4 +1,4 @@
-# Peer Programming/Refactoring - UCA Course Registration(JAVA)
+Peer Programming/Refactoring - UCA Course Registration(JAVA)
 
 OVERVIEW:
 This repository is designated for the SE Refactor Assignment regarding class enrollment. The project was refactored to follow a layerd architecture for improved 
