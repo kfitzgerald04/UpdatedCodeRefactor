@@ -22,8 +22,12 @@ Acts as the main layer, where the code is ran.
 
 RUN INSTRUCTIONS:
 1. Clone repo
-2. Run the code from the APP package (Main.java)
+2. Run the code from the APP package (src/main/java/app/Main.java) 
 3. Add students/courses
-4. Confirm that each option yields the correct results. 
+4. Confirm that each option yields the correct results.
+
+MAVEN INSTRUCTIONS:
+1. To test any menu feature associated with Course funtionality, run from the test MODEL package (src/test/java/model/CourseTest.java)
+2. You can either right-click to run Maven, or go directly inside the class itself. 
 
 
