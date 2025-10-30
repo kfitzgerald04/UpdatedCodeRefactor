@@ -1,15 +1,11 @@
 package app;
 
-import model.Course;
-import model.Student;
 import repo.StudentRepository;
 import repo.CourseRepository;
 import repo.EnrollmentRepository;
 import service.RegistrationService;
-import app.Run;
+
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main
 {
