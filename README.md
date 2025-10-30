@@ -27,7 +27,8 @@ RUN INSTRUCTIONS:
 4. Confirm that each option yields the correct results.
 
 MAVEN INSTRUCTIONS:
-1. To test any menu feature associated with Course funtionality, run from the test MODEL package (src/test/java/model/CourseTest.java)
-2. You can either right-click to run Maven, or go directly inside the class itself. 
+1. To test any menu feature associated with Course functionality, run from the test MODEL package (src/test/java/model/CourseTest.java)
+2. To test any menu feature associated with Enrollment functionality, run from the test MODEL package (src/test/java/model/EnrollmentTest.java)
+3. You can either right-click to run Maven, or go directly inside the class itself. 
 
 
