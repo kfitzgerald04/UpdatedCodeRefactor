@@ -3,6 +3,7 @@ package app;
 import model.Course;
 import model.Student;
 import service.RegistrationService;
+import util.StudentGenerator;
 
 import java.util.Scanner;
 
@@ -128,19 +129,78 @@ public class Run
                         break;
                     }
 
-                    case "0":
+                    case "10": // Generate students
+                    {
+                        System.out.println("\n=== Batch Test: Non-Functional Requirements ===");
+                        System.out.println("This will generate multiple students and enroll them in a course.");
+
+                        // get number of students to generate
+                        System.out.print("Enter number of students to generate (1-" +
+                                util.StudentGenerator.MAX_BATCH_SIZE + "): ");
+
+                        int studentCount;
+                        try
+                        {
+                            studentCount = Integer.parseInt(in.nextLine().trim());
+                            // verify valid generation amount
+                            if (studentCount < 1 || studentCount > util.StudentGenerator.MAX_BATCH_SIZE)
+                            {
+                                System.out.println("Error: Number must be between 1 and " +
+                                        util.StudentGenerator.MAX_BATCH_SIZE);
+                                break;
+                            }
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println("Error: Please enter a valid number.");
+                            break;
+                        }
+                            // Get course code
+                        System.out.print("Enter course code to enroll all students in: ");
+                        String courseCode = in.nextLine().trim();
+
+                        // Verify course exists
+                        Course testCourse = findCourse(svc, courseCode);
+                        if (testCourse == null)
+                        {
+                            System.out.println("Error: Course '" + courseCode + "' not found.");
+                            System.out.println("Please create the course first (Option 3).");
+                            break;
+                        }
+
+                        // Run batch test
+                        StudentGenerator.BatchTestResult result =
+                                StudentGenerator.generateAndEnroll(svc, courseCode, studentCount);
+
+                        // Print results
+                        result.printSummary();
+
+                        // Ask if user wants to save
+                        System.out.print("Save the batch test data to files? (y/n): ");
+                        String saveConfirm = in.nextLine().trim().toLowerCase();
+                        if (saveConfirm.equals("y") || saveConfirm.equals("yes"))
+                        {
+                            svc.save();
+                            System.out.println("Data saved to files.");
+                        }
+                        break;
+                    }
+
+                    case "0": // exit program
                         System.out.println("Bye!");
                         return;
 
                     default:
                         System.out.println("Invalid choice.");
                 }
-            } catch (NumberFormatException nfe)
+            }
+            catch (NumberFormatException nfe) // catch invalid number input
             {
                 System.out.println("Please enter a valid number.");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                // Service should throw friendly Validation/Enrollment messages on errors (bad email, duplicates, etc.)
+                // throw validation errors/exceptions from service layer
                 System.out.println("Error: " + ex.getMessage());
             }
         }
@@ -169,6 +229,7 @@ public class Run
         System.out.println("7) Show course roster");
         System.out.println("8) Save");
         System.out.println("9) Load");
+        System.out.println("10) Batch Test (Gen students)");
         System.out.println("0) Exit");
     }
 }
