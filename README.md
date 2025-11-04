@@ -25,6 +25,7 @@ RUN INSTRUCTIONS:
 2. Run the code from the APP package (src/main/java/app/Main.java) 
 3. Add students/courses
 4. Confirm that each option yields the correct results.
+5. The performance test is done in StudentGenerator class, so when you Run the code from Main in APP select option 10 to run the Batch Test.
 
 MAVEN INSTRUCTIONS:
 1. To test any menu feature associated with Course functionality, run from the test MODEL package (src/test/java/model/CourseTest.java)
